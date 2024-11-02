@@ -22,6 +22,31 @@ class inventario:
         for prenda in self.prendas:
             prenda.mostrar_info()
     
+class cliente:
+    def __init__(self, nombre, carrito):
+        self.nombre = nombre
+        self.carrito = carrito
+        
+        
+class carrito:
+    def __init__(self):
+        self.__cantidadproductos = 0
+    productos = []
+        
+    def get_cantidadproductos(self):
+        return self.__cantidadproductos
+
+    def set_cantidadproductos(self, x):
+        self.__cantidadproductos = x
+    
+    def añadir_a_carrito(self, objeto):
+        self.productos.append(objeto)
+        self.set_cantidadproductos(self.get_cantidadproductos()+1)       
+
+    def mostrar_carrito(self):
+        print(f"Su carrito tiene {self.get_cantidadproductos()} productos.")
+        for cosa in self.productos:
+            cosa.mostrar_info()
 
 class producto: # encapsulacion y abstraccion en las clases
     def __init__(self, nombre, precio, cantidad):
@@ -108,6 +133,9 @@ mi_inventario = inventario()
 # Creacion de la tienda en si. 
 Mi_Tienda = tienda("TiendaDeEjemplo", "Av. Eusebio Ayala", "+595 (0981) 111-111", ["Maria", "Pedro", "Carlos"], mi_inventario)    
 
+# Creacion de un cliente de ejemplo con su carrito respectivo
+Carrito_1 = carrito()
+Cliente_1 = cliente("ClienteDeEjemplo", Carrito_1)
 
 # Creacion de contenidos para el inventario
 
